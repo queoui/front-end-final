@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function MatchCard({ teamData, gameData, seasonData }) {
+export default function MatchCard({ week, teamData, gameData, seasonData }) {
   if (gameData['HomeOrAway'] !== 'HOME') {
     return;
   }
-  const homeTeam = gameData['Team'];
-  const awayTeam = gameData['Opponent'];
+  const homeTeam = week['HomeTeam'];
+  const awayTeam = week['AwayTeam'];
   let homeTeamIMG;
   let awayTeamIMG;
   let homeEarnedPoints;

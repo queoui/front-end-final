@@ -1,9 +1,11 @@
-async function getSeasonStats(season) {
+async function getWeekInfo(season, week) {
   try {
     let response = await fetch(
-      'https://cors-anywhere.herokuapp.com/https://api.sportsdata.io/api/nfl/odds/json/TeamSeasonStats/'
+      'https://cors-anywhere.herokuapp.com/https://api.sportsdata.io/api/nfl/odds/json/ScoresByWeek/'
         .concat(season)
-        .concat('REG/'),
+        .concat('REG/')
+        .concat(week),
+
       {
         headers: {
           'Ocp-Apim-Subscription-Key': 'efb56e725ab0490c89730b91c0d7bb60',
@@ -16,4 +18,4 @@ async function getSeasonStats(season) {
   }
 }
 
-export default getSeasonStats;
+export default getWeekInfo;
