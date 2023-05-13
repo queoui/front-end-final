@@ -30,7 +30,7 @@ function Week() {
   const [weekData, setWeekData] = useState([]);
   const [gameData, setGameData] = useState([]);
   const [teamData, dispatchTeamData] = useReducer(teamReducer, []);
-  const [weekData, dispatchWeekData] = useReducer(weekReducer, []);
+  const [seasonData, dispatchSeasonData] = useReducer(seasonReducer, []);
 
   useEffect(() => {
     getTeamGameStats(season, week).then((gameData) => setGameData(gameData));
@@ -59,9 +59,6 @@ function Week() {
     setSeason(buttonName.replace(/^\D+/g, ''));
   };
 
-  console.log(season);
-
-  console.log(seasonData);
   return (
     <main className="container">
       <h1>{season}</h1>
@@ -84,11 +81,9 @@ function Week() {
           </button>
         </div>
 
-        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <button className="dropdown-item" onClick={handleSeasonChange}>
-            2023
-          </button>
-        </div>
+        <button className="dropdown-item" onClick={handleSeasonChange}>
+          2023
+        </button>
       </div>
 
       <div className="dropdown">
@@ -166,17 +161,17 @@ function Week() {
             <ClipLoader color={'white'} size={75} />
           </div>
         )}
-        {weekData[0] &&
+        {weekData &&
           gameData[0] &&
           teamData[0] &&
           seasonData[0] &&
-          weekData[0].split().map((game, gameData) => {
+          weekData.map((game, gameData) => {
             return (
               <MatchCard
                 key={game.GameKey.concat(game.HomeTeamID)}
-                week={seasonData}
+                week={game}
                 teamData={teamData}
-                gameData={game}
+                gameData={gameData}
                 seasonData={seasonData}
               />
             );
