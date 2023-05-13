@@ -25,7 +25,14 @@ function seasonReducer(seasonData, action) {
 }
 
 function Week() {
-  const [season, setSeason] = useState('2022');
+  let defaultYear = new Date().getFullYear();
+  const current_date = new Date();
+  const week2Date = new Date(defaultYear, 9, 13);
+  if (current_date <= week2Date) {
+    defaultYear = defaultYear - 1;
+  }
+
+  const [season, setSeason] = useState(defaultYear);
   const [week, setWeek] = useState('1');
   const [weekData, setWeekData] = useState([]);
   const [gameData, setGameData] = useState([]);
@@ -79,11 +86,11 @@ function Week() {
           <button className="dropdown-item" onClick={handleSeasonChange}>
             2022
           </button>
-        </div>
 
-        <button className="dropdown-item" onClick={handleSeasonChange}>
-          2023
-        </button>
+          <button className="dropdown-item" onClick={handleSeasonChange}>
+            2023
+          </button>
+        </div>
       </div>
 
       <div className="dropdown">
@@ -156,13 +163,12 @@ function Week() {
         </div>
       </div>
       <div className="row row-cols-6 justify-content-around">
-        {!gameData[0] && (
+        {!weekData && (
           <div className="loader-container">
             <ClipLoader color={'white'} size={75} />
           </div>
         )}
         {weekData &&
-          gameData[0] &&
           teamData[0] &&
           seasonData[0] &&
           weekData.map((game, gameData) => {
@@ -171,7 +177,6 @@ function Week() {
                 key={game.GameKey.concat(game.HomeTeamID)}
                 week={game}
                 teamData={teamData}
-                gameData={gameData}
                 seasonData={seasonData}
               />
             );
