@@ -1,15 +1,18 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function MatchCard({ week, teamData, gameData, seasonData }) {
-  const homeTeam = week['HomeTeam'];
-  const awayTeam = week['AwayTeam'];
+  const homeTeam = week["HomeTeam"];
+  const awayTeam = week["AwayTeam"];
   let homeTeamIMG;
   let awayTeamIMG;
   let homeEarnedPoints;
   let awayEarnedPoints;
   let homeGivenPoints;
   let awayGivenPoints;
+
+  let seasonTeamHomeData;
+  let seasonTeamAwayData;
 
   teamData[0].map((team) => {
     if (team.Key === homeTeam) {
@@ -45,15 +48,39 @@ export default function MatchCard({ week, teamData, gameData, seasonData }) {
 
   const navigateTo = useNavigate();
 
-  const handleClick = () => {
-    // Navigate to the new page
-    navigateTo("/matchdetails");
-    // history.push("/matchdetails");
+  const handleClick = (homeTeam, awayTeam, seasonData) => {
+    const filteredHomeTeam = teamData[0].filter((team) => {
+      return team.Key === homeTeam;
+    });
+    const filteredAwayTeam = teamData[0].filter((team) => {
+      return team.Key === awayTeam;
+    });
+
+    seasonData[0].map((seasonTeam) => {
+      if (seasonTeam.Team === homeTeam) {
+        seasonTeamHomeData = seasonTeam;
+      }
+      if (seasonTeam.Team === awayTeam) {
+        seasonTeamAwayData = seasonTeam;
+      }
+    });
+
+    console.log(seasonTeamHomeData);
+
+    // Navigate to match details
+    navigateTo(`/matchdetails`, {
+      state: {
+        filteredHomeTeam,
+        filteredAwayTeam,
+        seasonTeamHomeData,
+        seasonTeamAwayData,
+      },
+    });
   };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => handleClick(homeTeam, awayTeam, seasonData)}
       className="card col my-3"
       style={{ width: "18rem", borderWidth: "5px" }}>
       <div className="row">
