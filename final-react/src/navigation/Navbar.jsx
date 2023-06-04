@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 // import views
 import Home from '../views/Home';
 import Week from '../views/Week';
+import MatchDetails from '../views/MatchDetails';
+
 function Navbar() {
   return (
     <div>
@@ -14,8 +16,7 @@ function Navbar() {
           data-target="#navbarNav"
           aria-controls="navbarNav"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
@@ -36,6 +37,7 @@ function Navbar() {
       <Routes>
         <Route path="/" element={<Home title="placethebet.net" />} />
         <Route path="/week" element={<Week />} />
+        <Route path="/matchdetails" element={<MatchDetails />} />
       </Routes>
     </div>
   );
