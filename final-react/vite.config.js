@@ -12,9 +12,10 @@ export default defineConfig({
       "/api": {
         target: env.VITE_NFL_URL,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api"),
+        rewrite: (path) => path.replace(/^\/api/, "/api")
       },
     },
+    debug: true,
   },
 });
 

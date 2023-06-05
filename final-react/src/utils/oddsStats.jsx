@@ -1,18 +1,19 @@
 import axios from "axios";
 
-const nflUrl = "/api/nfl/fantasy/json/Teams";
+const nflUrl = "/api/nfl/odds/json/GameOddsLineMovement/";
 const headers = {
   "Ocp-Apim-Subscription-Key": import.meta.env.VITE_API_KEY,
   "Content-Type": "application/json",
 };
 
-async function getTeamInfo(week) {
+async function getOddsStats(scoreid) {
   try {
-    const response = await axios.get(nflUrl, {headers});
+    let oddsUrl = nflUrl.concat(scoreid);
+    const response = await axios.get(oddsUrl, { headers });
     return response.data;
   } catch (err) {
     console.error(err);
   }
 }
 
-export default getTeamInfo;
+export default getOddsStats;
