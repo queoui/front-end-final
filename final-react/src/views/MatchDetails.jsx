@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function MatchDetails() {
     const location = useLocation();
@@ -7,8 +7,43 @@ export default function MatchDetails() {
     const filteredAwayTeam = location.state?.filteredAwayTeam || [];
     const seasonTeamHomeData = location.state?.seasonTeamHomeData || [];
     const seasonTeamAwayData = location.state?.seasonTeamAwayData || [];
-    console.log(seasonTeamHomeData);
+    const weekTeamData = location.state?.weekTeamData || [];
     
+    const navigateTo = useNavigate();
+
+    const handleButtonClick = () => {
+      navigateTo(`/oddsmovement`, {
+        state: {
+          weekTeamData,
+        },
+      });
+    };
+
+    let offensiveYardsHomeTeamAvg =
+      seasonTeamHomeData.OffensiveYards / seasonTeamHomeData.Games;
+    let offensiveYardsAwayTeamAvg =
+      seasonTeamAwayData.OffensiveYards / seasonTeamAwayData.Games;
+
+    let rushingYardsHomeTeamAvg =
+      seasonTeamHomeData.RushingYards / seasonTeamHomeData.Games;
+    let rushingYardsAwayTeamAvg =
+      seasonTeamAwayData.RushingYards / seasonTeamAwayData.Games;
+
+    let passingYardsHomeTeamAvg =
+      seasonTeamHomeData.PassingYards / seasonTeamHomeData.Games;
+    let passingYardsAwayTeamAvg =
+      seasonTeamAwayData.PassingYards / seasonTeamAwayData.Games;
+    
+    let thirdDownHomeTeamAvg =
+      seasonTeamHomeData.ThirdDownConversions / seasonTeamHomeData.Games;
+    let thirdDownAwayTeamAvg =
+      seasonTeamAwayData.ThirdDownConversions / seasonTeamAwayData.Games;
+
+    let sacksHomeTeamAvg =
+      seasonTeamHomeData.Sacks / seasonTeamHomeData.Games;
+    let sacksAwayTeamAvg =
+      seasonTeamAwayData.Sacks / seasonTeamAwayData.Games;
+
     return (
       <div className="container mt-5 border border-light">
         <div className="row mt-4 pb-4 border-bottom">
@@ -30,50 +65,53 @@ export default function MatchDetails() {
         </div>
         <div className="row mt-4 border-bottom">
           <div className="col text-center">
-            <p>{seasonTeamHomeData.OffensiveYards}</p>
+            <p>{offensiveYardsHomeTeamAvg.toFixed(2)}</p>
           </div>
           <div className="col text-center">Offensive Yards</div>
           <div className="col text-center">
-            {seasonTeamAwayData.OffensiveYards}
+            {offensiveYardsAwayTeamAvg.toFixed(2)}
           </div>
         </div>
         <div className="row mt-4 border-bottom">
           <div className="col text-center">
-            <p>{seasonTeamHomeData.RushingYards}</p>
+            <p>{rushingYardsHomeTeamAvg.toFixed(2)}</p>
           </div>
           <div className="col text-center">Rushing Yards</div>
           <div className="col text-center">
-            {seasonTeamAwayData.RushingYards}
+            {rushingYardsAwayTeamAvg.toFixed(2)}
           </div>
         </div>
         <div className="row mt-4 border-bottom">
           <div className="col text-center">
-            <p>{seasonTeamHomeData.PassingYards}</p>
+            <p>{passingYardsHomeTeamAvg.toFixed(2)}</p>
           </div>
           <div className="col text-center">Passing Yards</div>
           <div className="col text-center">
-            {seasonTeamAwayData.PassingYards}
+            {passingYardsAwayTeamAvg.toFixed(2)}
           </div>
         </div>
         <div className="row mt-4 border-bottom">
           <div className="col text-center">
-            <p>{seasonTeamHomeData.ThirdDownConversions}</p>
+            <p>{thirdDownHomeTeamAvg.toFixed(2)}</p>
           </div>
           <div className="col text-center">Third Down Conversions</div>
           <div className="col text-center">
-            {seasonTeamAwayData.ThirdDownConversions}
+            {thirdDownAwayTeamAvg.toFixed(2)}
           </div>
         </div>
         <div className="row mt-4 border-bottom">
           <div className="col text-center">
-            <p>{seasonTeamHomeData.Sacks}</p>
+            <p>{sacksHomeTeamAvg.toFixed(2)}</p>
           </div>
           <div className="col text-center">Sacks</div>
-          <div className="col text-center">{seasonTeamAwayData.Sacks}</div>
+          <div className="col text-center">{sacksAwayTeamAvg.toFixed(2)}</div>
         </div>
         <div className="row mt-4 pb-4">
           <div className="col text-center">
-            <button type="button" className="text-light btn btn-secondary">
+            <button
+              type="button"
+              className="text-light btn btn-secondary"
+              onClick={handleButtonClick}>
               Odds Movement
             </button>
           </div>

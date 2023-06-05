@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MatchCard({ week, teamData, gameData, seasonData }) {
+export default function MatchCard({ week, teamData, gameData, seasonData, weekData }) {
   const homeTeam = week["HomeTeam"];
   const awayTeam = week["AwayTeam"];
   let homeTeamIMG;
@@ -13,6 +13,7 @@ export default function MatchCard({ week, teamData, gameData, seasonData }) {
 
   let seasonTeamHomeData;
   let seasonTeamAwayData;
+  let weekTeamData;
 
   teamData[0].map((team) => {
     if (team.Key === homeTeam) {
@@ -65,7 +66,11 @@ export default function MatchCard({ week, teamData, gameData, seasonData }) {
       }
     });
 
-    console.log(seasonTeamHomeData);
+    weekData.map((weekTeam) => {
+      if (weekTeam.HomeTeam === homeTeam && weekTeam.AwayTeam) {
+        weekTeamData = weekTeam;
+      }
+    });
 
     // Navigate to match details
     navigateTo(`/matchdetails`, {
@@ -74,6 +79,7 @@ export default function MatchCard({ week, teamData, gameData, seasonData }) {
         filteredAwayTeam,
         seasonTeamHomeData,
         seasonTeamAwayData,
+        weekTeamData
       },
     });
   };

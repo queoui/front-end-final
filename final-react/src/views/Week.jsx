@@ -178,6 +178,7 @@ function Week() {
                 week={game}
                 teamData={teamData}
                 seasonData={seasonData}
+                weekData={weekData}
               />
             );
           })}

@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../views/Home';
 import Week from '../views/Week';
 import MatchDetails from '../views/MatchDetails';
+import GameOddsLineMovement from '../views/OddsMovement';
 
 function Navbar() {
   return (
@@ -38,6 +39,7 @@ function Navbar() {
         <Route path="/" element={<Home title="placethebet.net" />} />
         <Route path="/week" element={<Week />} />
         <Route path="/matchdetails" element={<MatchDetails />} />
+        <Route path="/oddsmovement" element={<GameOddsLineMovement />} />
       </Routes>
     </div>
   );
