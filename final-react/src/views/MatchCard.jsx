@@ -85,7 +85,7 @@ export default function MatchCard({ week, teamData, gameData, seasonData, weekDa
   };
 
   return (
-    <div
+    <div id="match-card"
       onClick={() => handleClick(homeTeam, awayTeam, seasonData)}
       className="card col my-3"
       style={{ width: "18rem", borderWidth: "5px" }}>

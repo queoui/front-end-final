@@ -20,3 +20,7 @@ h1 {
 .modal-content {
   border-radius: 0 !important;
 }
+
+#match-card:hover {
+  cursor: pointer;
+}
