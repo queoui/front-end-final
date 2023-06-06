@@ -6,13 +6,14 @@ import { loadEnv } from "vite";
 const env = loadEnv("development", process.cwd(), "");
 
 export default defineConfig({
+  base: "/front-end-final/",
   plugins: [react()],
   server: {
     proxy: {
       "/api": {
         target: env.VITE_NFL_URL,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "/api")
+        rewrite: (path) => path.replace(/^\/api/, "/api"),
       },
     },
     debug: true,
