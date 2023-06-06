@@ -107,17 +107,17 @@ export default function MatchCard({ week, teamData, gameData, seasonData, weekDa
         />
       </div>
       <div className="row card-body">
-        <h5
+        <h6
           className="card-text text-justify-left col"
           style={{ textAlign: "center" }}>
           {homeTeam}
-        </h5>
+        </h6>
         <div className="mx-5 col"></div>
-        <h5
+        <h6
           className="card-text text-justify-right col"
           style={{ textAlign: "center" }}>
           {awayTeam}
-        </h5>
+        </h6>
       </div>
       <div className="row data-body">
         <p
