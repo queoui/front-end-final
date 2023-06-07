@@ -1,10 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
-
-// import views
-import Home from '../views/Home';
-import Week from '../views/Week';
-import MatchDetails from '../views/MatchDetails';
-import GameOddsLineMovement from '../views/OddsMovement';
+import { Route, Routes, Link } from "react-router-dom";
+import Home from "../views/Home";
+import Week from "../views/Week";
+import MatchDetails from "../views/MatchDetails";
+import GameOddsLineMovement from "../views/OddsMovement";
 
 function Navbar() {
   return (
@@ -23,14 +21,14 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/">
+              <Link to="/" className="nav-link text-white">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item active">
-              <a className="nav-link text-white" href="/week">
+              <Link to="/week" className="nav-link text-white">
                 Weekly View
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
