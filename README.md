@@ -11,3 +11,14 @@ This site begins its analytical journey with statistics from the NFL. Initially,
 What Makes PlaceTheBet.Net Different?
 
 To my knowledge, a site like this does not exist. It places the power of statistical analytics into the hands of the hobbyist and gives them the confidence to place the bet. Not only does it provide a wealth of odds and statistics, but it also allows the user to choose what statistics matter to them, allowing the power of analysis to run wild.
+
+Libraries:
+Axios
+Bootstrap
+React
+React-Bootstrap
+React - DOM
+React- Spinners
+Vite
+ESlint
+GH-pages
