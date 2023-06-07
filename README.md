@@ -22,3 +22,7 @@ React- Spinners,
 Vite, 
 ESlint, 
 GH-pages
+
+To run the app:
+npm i
+npm start
